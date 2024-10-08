@@ -1,0 +1,14 @@
+{
+    _id: ObjectId('65c166b57361698a5cdd82cc'),
+        id: '875',
+        name: 'Lamp',
+        category: 'Kitchen',
+        condition: 'New',
+        posted_by: '26872',
+        zipcode: '94805',
+        date_added: 1667520000,
+        age_days: 400,
+        age_years: 1.1,
+        description: "A charming lamp that's been lighting up my reading nook. It casts a soft, inviting glow, perfect for those who love to curl up with a good book. It's seen some of my favorite chapters and is ready to illuminate yours!",
+        image: '/images/lamp.jpeg'
+    }
