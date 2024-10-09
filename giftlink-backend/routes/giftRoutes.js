@@ -13,12 +13,12 @@ router.get("/", async (req, res, next) => {
     const collection = db.collection("gifts");
 
     // Task 3: Fetch all gifts using the collection.find method. Chain with toArray method to convert to JSON array
-    const gifts = await collection({}).toArray();
+    const gifts = await collection.find({}).toArray();
 
     // Task 4: return the gifts using the res.json method
     res.json(gifts);
   } catch (e) {
-    logger.console.error("oops something went wrong", e);
+    logger.error("oops something went wrong", e);
     next(e);
   }
 });

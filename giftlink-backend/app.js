@@ -5,39 +5,33 @@ const cors = require("cors");
 const pinoLogger = require("./logger");
 
 const connectToDatabase = require("./models/db");
-const { loadData } = require("./util/import-mongo/index.js");
+const { loadData } = require("./util/import-mongo/index");
 
 const app = express();
 app.use("*", cors());
 const port = 3060;
 
+// Connect to MongoDB; we just do this one time
+connectToDatabase()
+  .then(() => {
+    pinoLogger.info("Connected to DB");
+  })
+  .catch((e) => console.error("Failed to connect to DB", e));
+
 app.use(express.json());
 
 // Route files
 const giftRoutes = require("./routes/giftRoutes");
+const authRoutes = require("./routes/authRoutes");
 const searchRoutes = require("./routes/searchRoutes");
-
 const pinoHttp = require("pino-http");
 const logger = require("./logger");
-app.use(pinoHttp({ logger }));
 
-// Connect to MongoDB and load data
-connectToDatabase()
-  .then(async () => {
-    pinoLogger.info("Connected to DB");
-    // Load the data into the database only after a successful connection
-    await loadData()
-      .then(() => {
-        pinoLogger.info("Data loaded successfully into DB");
-      })
-      .catch((e) => {
-        console.error("Failed to load data", e);
-      });
-  })
-  .catch((e) => console.error("Failed to connect to DB", e));
+app.use(pinoHttp({ logger }));
 
 // Use Routes
 app.use("/api/gifts", giftRoutes);
+app.use("/api/auth", authRoutes);
 app.use("/api/search", searchRoutes);
 
 // Global Error Handler
