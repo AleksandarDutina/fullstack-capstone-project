@@ -44,5 +44,4 @@ jobs:
           cd giftlink-frontend
           npm install
           npm run build
-          /*jshint esversion: 8 */
           echo "Client-side build successfully"
