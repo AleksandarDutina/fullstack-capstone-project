@@ -21,8 +21,8 @@ jobs:
         run: npm install jshint --global
       - name: Run Linter
         run: |
-          /*jshint esversion: 8 */
           # This command finds all JavaScript files recursively and runs JSHint on them
+          /*jshint esversion: 8 */
           find ./giftlink-backend -name app.js -exec jshint {} +
           find ./giftlink-backend -name auth.js -exec jshint {} +
           find ./giftlink-backend -name giftRoutes.js -exec jshint {} +
