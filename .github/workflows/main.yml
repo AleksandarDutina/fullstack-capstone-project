@@ -6,8 +6,8 @@ on:
     branches: [master, main]
 
 jobs:
-  /*jshint esversion: 8 */
   lint_js:
+      /*jshint esversion: 8 */
       name: Lint JavaScript Files
       runs-on: ubuntu-latest
       steps:
@@ -20,6 +20,7 @@ jobs:
 
       - name: Install JSHint
         run: npm install jshint --global
+        
       - name: Run Linter
         run: |
           # This command finds all JavaScript files recursively and runs JSHint on them
